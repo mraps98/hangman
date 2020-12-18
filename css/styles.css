@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.guessDisplay{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.guessDisplay__word{
+    margin-right: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.guessDisplay__character{
+    margin: 5px;
+    padding: 5px;
+}
+
+.guessDisplay__character--nonspace{
+    /* border: 1px solid black; */
+}
+
+.letters{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.letters__letter{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.letters__letter:hover{
+    transform: scale(1.2);
+}
