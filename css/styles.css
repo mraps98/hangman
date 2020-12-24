@@ -54,7 +54,12 @@
 }
 
 .letters__letter--inactive{
-    color: white;
-    background-color: white;
-    border-color: white;
+    background-color: lightgray;
+    border-color: lightgray;
+    cursor: not-allowed;
+    color: gray;
+}
+
+.letters__letter--inactive:hover{
+    transform: scale(1);
 }
