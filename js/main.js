@@ -76,6 +76,7 @@ const setUpClickListenersForButtons = () =>{
     let guessDisplayCharacters = document.querySelectorAll(".guessDisplay__character");
     letterButtons.forEach(letter => {
         letter.addEventListener("click", e => {
+            console.log("clicked");
             let found = false;
             for (let i = 0; i < phraseToGuess.length; i++) {
                 if (phraseToGuess.split("")[i].toLowerCase() === letter.innerHTML.toLowerCase()) {
@@ -87,9 +88,11 @@ const setUpClickListenersForButtons = () =>{
             if(!found){
                 increaseStrikes();
             }
+            letter.classList.add("letters__letter--inactive");
+            letter.removeEventListener("click");
+            checkIfWon();
         });
     });
-    checkIfWon();
 }
 
 
