@@ -17,8 +17,15 @@ const guessingOptions = {
         "Inception",
         "The Dark Knight Rises",
         "Pulp Fiction",
-        "21 Jump Street",
-        "Superbad"
+        "Batman Returns",
+        "Superbad",
+        "Superman Returns",
+        "High School Musical",
+        "Inspector Gadget",
+        "Bad moms",
+        "Tron Legacy",
+        "John Wick",
+        "Goodfellas",
     ]
 };
 
@@ -32,7 +39,8 @@ let numStrikes = 0;
 let phraseToGuess;
 let lettersGuessed = [];
 const setUpPhraseToGuess = () => {
-    phraseToGuess = guessingOptions.bollywoodMovies[0];
+    phraseToGuess = guessingOptions.hollywoodMovies[Math.floor((Math.random() * 100000) % guessingOptions.hollywoodMovies.length)];
+    console.log(phraseToGuess);
     phraseGuessed = phraseToGuess;
     phraseGuessed.split("").forEach(character=>{
         character = " ";
@@ -64,7 +72,7 @@ const renderGuessDisplay = () => {
 /* Rendering Letters */
 const renderLetters = () => {
     let lettersDiv = document.querySelector(".letters");
-    lettersDiv.innerHTMl = "";
+    lettersDiv.innerHTML = "";
     letters.forEach(letter => {
         lettersDiv.innerHTML += `<div class="letters__letter">${letter}</div>`;
     });
@@ -76,21 +84,24 @@ const setUpClickListenersForButtons = () =>{
     let guessDisplayCharacters = document.querySelectorAll(".guessDisplay__character");
     letterButtons.forEach(letter => {
         letter.addEventListener("click", e => {
-            console.log("clicked");
-            let found = false;
-            for (let i = 0; i < phraseToGuess.length; i++) {
-                if (phraseToGuess.split("")[i].toLowerCase() === letter.innerHTML.toLowerCase()) {
-                    guessDisplayCharacters[i].innerHTML = `${letter.innerHTML.toLowerCase()}`;
-                    found=true;
-                    lettersGuessed[i] = true;
+            if(letter.classList.contains("letters__letter--inactive")){
+                
+            }else{
+                console.log("clicked");
+                let found = false;
+                for (let i = 0; i < phraseToGuess.length; i++) {
+                    if (phraseToGuess.split("")[i].toLowerCase() === letter.innerHTML.toLowerCase()) {
+                        guessDisplayCharacters[i].innerHTML = `${letter.innerHTML.toLowerCase()}`;
+                        found=true;
+                        lettersGuessed[i] = true;
+                    }
                 }
+                if(!found){
+                    increaseStrikes();
+                }
+                letter.classList.add("letters__letter--inactive");
+                checkIfWon();
             }
-            if(!found){
-                increaseStrikes();
-            }
-            letter.classList.add("letters__letter--inactive");
-            letter.removeEventListener("click");
-            checkIfWon();
         });
     });
 }
@@ -99,6 +110,10 @@ const setUpClickListenersForButtons = () =>{
 /*Increase Strike*/
 const increaseStrikes = () => {
     numStrikes++;
+    if(numStrikes == 6){
+        alert("Game over. The phrase was " + phraseToGuess);
+        reset();
+    }
 }
 
 
@@ -114,9 +129,18 @@ const checkIfWon = () => {
     if(falseFound == false){
         won = true;
         alert("Congratulations! You have won tha game");
+        reset();
     }
-    console.log(won);
 } 
+
+
+/* reset */
+const reset = () => {
+    setUpPhraseToGuess();
+    renderGuessDisplay();
+    renderLetters();
+}
+
 setUpPhraseToGuess();
 renderGuessDisplay();
 renderLetters();
