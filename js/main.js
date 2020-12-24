@@ -13,7 +13,7 @@ const guessingOptions = {
         "Dhol"
     ],
     hollywoodMovies: [
-        "There's something about Mary",
+        "Theres something about Mary",
         "Inception",
         "The Dark Knight Rises",
         "Pulp Fiction",
@@ -37,8 +37,9 @@ let numStrikes = 0;
 
 /* Deciding the word / phrase to guess */
 let phraseToGuess;
-let lettersGuessed = [];
+let lettersGuessed;
 const setUpPhraseToGuess = () => {
+    lettersGuessed = [];
     phraseToGuess = guessingOptions.hollywoodMovies[Math.floor((Math.random() * 100000) % guessingOptions.hollywoodMovies.length)];
     console.log(phraseToGuess);
     phraseGuessed = phraseToGuess;
@@ -110,6 +111,8 @@ const setUpClickListenersForButtons = () =>{
 /*Increase Strike*/
 const increaseStrikes = () => {
     numStrikes++;
+    let strikesDisplay__strikes = document.querySelector(".strikesDisplay__strikes");
+    strikesDisplay__strikes.innerHTML = numStrikes;
     if(numStrikes == 6){
         alert("Game over. The phrase was " + phraseToGuess);
         reset();
@@ -136,12 +139,13 @@ const checkIfWon = () => {
 
 /* reset */
 const reset = () => {
+    numStrikes = 0;
+    let strikesDisplay__strikes = document.querySelector(".strikesDisplay__strikes");
+    strikesDisplay__strikes.innerHTML = numStrikes;
     setUpPhraseToGuess();
     renderGuessDisplay();
     renderLetters();
+    setUpClickListenersForButtons();
 }
 
-setUpPhraseToGuess();
-renderGuessDisplay();
-renderLetters();
-setUpClickListenersForButtons();
+reset();
