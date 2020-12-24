@@ -52,3 +52,9 @@
 .letters__letter:hover{
     transform: scale(1.2);
 }
+
+.letters__letter--inactive{
+    color: white;
+    background-color: white;
+    border-color: white;
+}
