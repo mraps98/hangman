@@ -147,5 +147,5 @@ const reset = () => {
     renderLetters();
     setUpClickListenersForButtons();
 }
-
+alert("Guess the movie (hollywood)");
 reset();
