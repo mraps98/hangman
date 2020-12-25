@@ -70,6 +70,7 @@ const letters = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ];
 let numStrikes = 0;
+let clue = "Guess the Hollywood movie";
 
 
 /* Deciding the word / phrase to guess */
@@ -179,10 +180,11 @@ const reset = () => {
     numStrikes = 0;
     let strikesDisplay__strikes = document.querySelector(".strikesDisplay__strikes");
     strikesDisplay__strikes.innerHTML = numStrikes;
+    let clueDisplay__clue = document.querySelector(".clueDisplay__clue");
+    clueDisplay__clue.innerHTML = clue;
     setUpPhraseToGuess();
     renderGuessDisplay();
     renderLetters();
     setUpClickListenersForButtons();
 }
-alert("Guess the movie (hollywood)");
 reset();

@@ -14,7 +14,11 @@ body{
     display: flex;
     justify-content: center;
 }
-
+.clueDisplay{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 .strikesDisplay{
     display: flex;
     justify-content: center;
